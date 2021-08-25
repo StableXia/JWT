@@ -1,0 +1,12 @@
+{
+  "name": "jwt-server",
+  "scripts": {
+    "dev": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "koa-router": "^10.1.1"
+  }
+}
