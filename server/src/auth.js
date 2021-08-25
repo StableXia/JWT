@@ -1,6 +1,6 @@
 const jwt = require('./jwt');
 
-module.exports = function auth(ctx, next) {
+module.exports = async (ctx, next) => {
   const { token = '' } = ctx.request.header;
   const tk = token.replace('Bearer ', '');
 
