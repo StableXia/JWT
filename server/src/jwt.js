@@ -13,7 +13,7 @@ module.exports = {
   },
   verify(token) {
     try {
-      return jsonwebtoken.verify(token, secret);
+      return jsonwebtoken.verify(token, SECRET);
     } catch (e) {
       return false;
     }
