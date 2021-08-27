@@ -21,16 +21,16 @@ module.exports = (opts) => {
     }
 
     const { authorization = '' } = ctx.request.header;
-    const token = authorization.replace('Bearer Bearer ', '');
+    const token = authorization.replace('Bearer ', '');
     const decoded = jwt.verify(token);
 
     if (!decoded || decoded.userId !== 'key-1') {
-      ctx.throw(
-        401,
-        JSON.stringify({
-          code: 401,
-        }),
-      );
+      ctx.status = 401;
+      ctx.body = {
+        code: 401,
+        message: '无访问权限',
+      };
+      return;
     }
 
     await next();

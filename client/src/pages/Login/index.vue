@@ -15,8 +15,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import fetch from '@/fetch';
-
-console.log(fetch);
+import { setToken } from '@/utils';
 
 export default defineComponent({
   name: 'Login',
@@ -28,10 +27,15 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
-      fetch.post('/api/login', {
-        username: this.username,
-        password: this.password,
-      });
+      fetch
+        .post('/api/login', {
+          username: this.username,
+          password: this.password,
+        })
+        .then((res) => {
+          setToken(res.data.token);
+          this.$router.push('/');
+        });
     },
   },
 });

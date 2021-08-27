@@ -36,15 +36,26 @@ router.post('/api/login', async (ctx) => {
 
 router.get('/api/user/list', async (ctx) => {
   ctx.type = 'json';
-  ctx.body = { code: 200, success: true, data: [] };
+  ctx.body = {
+    code: 200,
+    success: true,
+    data: [
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+      },
+      {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄',
+      },
+    ],
+  };
 });
 
-app.use(async (ctx, next) => {
-  console.log('ctx >>>>>>', ctx);
-  await next();
-});
-app.use(crossOrigin);
 app.use(bodyparser);
+app.use(crossOrigin);
 app.use(
   auth({
     unless: {
@@ -53,6 +64,5 @@ app.use(
   }),
 );
 app.use(router.routes());
-app.use(crossOrigin);
 
 app.listen(3000);
